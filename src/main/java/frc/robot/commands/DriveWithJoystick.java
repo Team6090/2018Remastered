@@ -46,7 +46,7 @@ public class DriveWithJoystick extends CommandBase {
     double throttledjoystickz = -joystickz * throttle;
     /* Put the throttled Y and Z values into the arcade drive */
     drivetrain.arcadeDrive(throttledjoysticky, throttledjoystickz);
-    }
+  }
 
   // Called once the command ends or is interrupted.
   @Override
