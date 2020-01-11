@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.DriveTrain;
+import net.bancino.robotics.jlimelight.Limelight;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -23,12 +24,12 @@ public class RobotContainer {
   //Define robot's subsystem and commands here...
 
   //private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  private DriveTrain drivetrain;
+  private DriveTrain drivetrain = new DriveTrain();
 
   //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   private Command drivewithjoystick;
 
-  Joystick joystick = new Joystick(0);
+  public static Joystick joystick = new Joystick(0);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.

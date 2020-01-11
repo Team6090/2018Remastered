@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 
@@ -22,6 +23,8 @@ public class DriveWithJoystick extends CommandBase {
    * @param subsystem The subsystem used by this command.
    */
   public DriveWithJoystick(Joystick joystick, DriveTrain drivetrain) {
+    this.joystick = joystick;
+    this.drivetrain = drivetrain;
     addRequirements(drivetrain);
   }
 
@@ -33,17 +36,16 @@ public class DriveWithJoystick extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    /* Fetch the throttle from the joystick */
-    double joystickthrottle = joystick.getThrottle();
+    double throttle = joystick.getRawAxis(3);
     /* Fetch Y and Z values from joystick */
     double joysticky = joystick.getY();
     double joystickz = joystick.getZ();
-    /* Apply the throttle multiplier */
-    double throttledjoysticky = joystickthrottle * joysticky;
-    double throttledjoystickz = joystickthrottle * joystickz;
+    /* Multiply the y and z values by the throttle */
+    double throttledjoysticky = joysticky * throttle;
+    double throttledjoystickz = -joystickz * throttle;
     /* Put the throttled Y and Z values into the arcade drive */
     drivetrain.arcadeDrive(throttledjoysticky, throttledjoystickz);
-  }
+    }
 
   // Called once the command ends or is interrupted.
   @Override

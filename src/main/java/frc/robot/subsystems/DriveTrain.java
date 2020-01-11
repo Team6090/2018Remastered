@@ -8,16 +8,23 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotContainer;
+import frc.robot.commands.DriveWithJoystick;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 public class DriveTrain extends SubsystemBase {
 
   public static final int LEFT_MOTOR = 1;
-  public static final int LEFT_SLAVE_MOTOR = 3;
-  public static final int RIGHT_MOTOR = 2;
+  public static final int LEFT_SLAVE_MOTOR = 2;
+  public static final int RIGHT_MOTOR = 3;
   public static final int RIGHT_SLAVE_MOTOR = 4;
+
+  public DriveTrain() {
+    setDefaultCommand(new DriveWithJoystick(RobotContainer.joystick, this));
+  }
 
   /**
    * The procession of motor declarations and groupings leading to differential drive.
@@ -25,13 +32,12 @@ public class DriveTrain extends SubsystemBase {
 
   //WPI_TalonSRX leftMotor2 = new WPI_TWPI_TalonSRX
   WPI_TalonSRX leftMotor = new WPI_TalonSRX(LEFT_MOTOR);
-  WPI_TalonSRX leftSlaveMotor = new WPI_TalonSRX(LEFT_SLAVE_MOTOR);
+  WPI_VictorSPX leftSlaveMotor = new WPI_VictorSPX(LEFT_SLAVE_MOTOR);
   WPI_TalonSRX rightMotor = new WPI_TalonSRX(RIGHT_MOTOR);
-  WPI_TalonSRX rightSlaveMotor = new WPI_TalonSRX(RIGHT_SLAVE_MOTOR);
+  WPI_VictorSPX rightSlaveMotor = new WPI_VictorSPX(RIGHT_SLAVE_MOTOR);
 
   SpeedControllerGroup leftSideDrive = new SpeedControllerGroup(leftMotor, leftSlaveMotor);
   SpeedControllerGroup rightSideDrive = new SpeedControllerGroup(rightMotor, rightSlaveMotor);
-  //rightSideDrive = -rightSideDrive;
 
   DifferentialDrive diffDrive = new DifferentialDrive(leftSideDrive, rightSideDrive);
 
@@ -42,6 +48,16 @@ public class DriveTrain extends SubsystemBase {
    */
   public void arcadeDrive(double y, double z) {
     diffDrive.arcadeDrive(y, z);
+  }
+
+  public void driveLeftSide(double speed) {
+    leftMotor.set(speed);
+    leftSlaveMotor.set(speed);
+  }
+
+  public void driveRightSide(double speed) {
+    rightMotor.set(speed);
+    rightSlaveMotor.set(speed);
   }
 
   @Override
