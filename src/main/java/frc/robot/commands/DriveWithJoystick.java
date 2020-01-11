@@ -8,7 +8,6 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 
@@ -37,6 +36,8 @@ public class DriveWithJoystick extends CommandBase {
   @Override
   public void execute() {
     double throttle = joystick.getRawAxis(3);
+    /* Converts throttle to a 0-1 scale */
+    throttle = throttle++ / 2;
     /* Fetch Y and Z values from joystick */
     double joysticky = joystick.getY();
     double joystickz = joystick.getZ();
