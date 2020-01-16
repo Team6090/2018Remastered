@@ -11,7 +11,10 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.Vision;
 import frc.robot.subsystems.DriveTrain;
+import net.bancino.robotics.jlimelight.Limelight;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -26,9 +29,6 @@ public class RobotContainer {
   private DriveTrain drivetrain = new DriveTrain();
 
   //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-  private Command drivewithjoystick;
-  private Command vision;
-
   public static Joystick joystick = new Joystick(0);
 
   /**
@@ -46,6 +46,8 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    JoystickButton visionButton = new JoystickButton(joystick, 2);
+    visionButton.whenPressed(new Vision());
   }
 
   /**
@@ -55,6 +57,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // This command will run in autonomous
-    return drivewithjoystick;
+    return null;
   }
 }

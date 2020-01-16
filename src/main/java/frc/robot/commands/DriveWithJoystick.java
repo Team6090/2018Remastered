@@ -37,7 +37,7 @@ public class DriveWithJoystick extends CommandBase {
   public void execute() {
     double throttle = joystick.getRawAxis(3);
     /* Converts throttle to a 0-1 scale */
-    throttle = throttle++ / 2;
+    throttle = (throttle + 1) / 2;
     /* Fetch Y and Z values from joystick */
     double joysticky = joystick.getY();
     double joystickz = joystick.getZ();
