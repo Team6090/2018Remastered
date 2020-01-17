@@ -12,9 +12,9 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.PathCorrection;
 import frc.robot.commands.Vision;
 import frc.robot.subsystems.DriveTrain;
-import net.bancino.robotics.jlimelight.Limelight;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -46,8 +46,10 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    JoystickButton visionButton = new JoystickButton(joystick, 2);
+    JoystickButton visionButton = new JoystickButton(joystick, 3);
     visionButton.whenPressed(new Vision());
+    JoystickButton pathFinderButton = new JoystickButton(joystick, 4);
+    pathFinderButton.whenPressed(new PathCorrection());
   }
 
   /**
