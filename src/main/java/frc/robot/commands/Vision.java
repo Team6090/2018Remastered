@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.RobotContainer;
 import net.bancino.robotics.jlimelight.Limelight;
 import net.bancino.robotics.jlimelight.Limelight.CameraMode;
@@ -21,8 +22,35 @@ public class Vision extends CommandBase {
     LedState initState = LedState.FORCE_ON; // Sets the initialization LED state
     CameraMode initCamMode = CameraMode.VISION; // Sets the initialization to DRIVER/VISION mode
     Boolean povCamMode = true;
+    Boolean ledOn = true;
     int pipeline = 0; // Sets the pipeline
     StreamMode streamMode = StreamMode.STANDARD; // Sets the stream mode to Main, Secondary, or Standard
+
+    /**
+     *  Finds the distance from the Limelight to the target.
+     *  Formula: (h2-h1)/tan(a2-a1)=d
+     * 
+     *  @param collinTx Horizontal Offset
+     *  @param collinTy Vertical Offset
+     *  @param collinA1 Angle of the mounted Limelight
+     *  @param collinA2 Angle of the Limelight to target
+     *  @param collinH1 Height of the Limelight
+     *  @param collinH2 Height of the target
+     *  @param collinD Distance to the target
+     */
+    public double DistanceToTarget(){
+        double collinTx = limelight.getHorizontalOffset();
+        double collinTy = limelight.getVerticalOffset();
+        double collinA1 = 0;
+        double collinH1 = 43.5;
+        double collinH2 = 81;
+        double collinD;
+        double collinTyRadians = collinTy*(Math.PI/180);
+
+        collinD = (collinH2-collinH1)/(Math.tan(collinTyRadians-collinA1));
+        
+        return collinD;
+    }
 
     public Vision() {
         //addRequirements();
@@ -31,6 +59,7 @@ public class Vision extends CommandBase {
     // Called when the command is initially scheduled.
      @Override
      public void initialize() {
+         
          /** This sets the LED state */
          limelight.setLedMode(initState);
          /** This sets the camera mode */
@@ -42,7 +71,8 @@ public class Vision extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        switch (RobotContainer.joystick.getPOV()){
+        /** The logic to switch between vision and driver */
+        switch (RobotContainer.joystick.getPOV()) {
            case 0:
             if (povCamMode) {
                 limelight.setCameraMode(CameraMode.VISION);
@@ -51,6 +81,15 @@ public class Vision extends CommandBase {
             }
             povCamMode = !povCamMode;
         }
+        switch (RobotContainer.joystick.getPOV()) {
+            case 180:
+                if (ledOn) {
+                    limelight.setLedMode(LedState.FORCE_ON);
+                } else {
+                    limelight.setLedMode(LedState.FORCE_OFF);
+                }
+                ledOn = !ledOn;
+        }
         /** All of this next block is just going to output information to the SmartDashboard */
         SmartDashboard.putBoolean("Limelight/HasTarget: ", limelight.hasValidTargets());
         SmartDashboard.putNumber("Limelight/Area", limelight.getTargetArea());
@@ -58,6 +97,7 @@ public class Vision extends CommandBase {
         SmartDashboard.putNumber("Limelight/Vertical Offset: ", limelight.getVerticalOffset());
         SmartDashboard.putNumber("Limelight/Skew: ", limelight.getSkew());
         SmartDashboard.putNumber("Limelight/CamTran: ", limelight.getCamTran()); // Translation (x,y,y) Rotation(pitch,yaw,roll)
+        SmartDashboard.putNumber("Limelight/CollinD: ", DistanceToTarget());
     }
 
     // Called once the command ends or is interrupted.
