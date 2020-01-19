@@ -18,7 +18,6 @@ public class PathCorrection extends CommandBase {
     
     Limelight limelight = new Limelight();
 
-
     public PathCorrection(){
     }
 
