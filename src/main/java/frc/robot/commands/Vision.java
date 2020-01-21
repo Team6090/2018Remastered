@@ -37,7 +37,7 @@ public class Vision extends CommandBase {
      *  @param collinD Distance to the target
      */
     public double DistanceToTarget() {
-        double collinTx = limelight.getHorizontalOffset();
+        //double collinTx = limelight.getHorizontalOffset();
         double collinTy = limelight.getVerticalOffset();
         double collinTyRadians = collinTy*(Math.PI/180);
         double collinA1 = 0;
