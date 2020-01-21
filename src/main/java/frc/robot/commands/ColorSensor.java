@@ -18,9 +18,9 @@ public class ColorSensor extends CommandBase {
 
     public void execute() {
         Color detectedColor = m_colorSensor.getColor();
-        SmartDashboard.putNumber("Red", detectedColor.red);
-        SmartDashboard.putNumber("Green", detectedColor.green);
-        SmartDashboard.putNumber("Blue", detectedColor.blue);
+        SmartDashboard.putNumber("ColorSensor/Red", detectedColor.red);
+        SmartDashboard.putNumber("ColorSensor/Green", detectedColor.green);
+        SmartDashboard.putNumber("ColorSensor/Blue", detectedColor.blue);
     }
 
     public void end(boolean interrupted) {
