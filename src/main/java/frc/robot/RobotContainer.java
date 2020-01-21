@@ -12,9 +12,12 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.ColorSensor;
 import frc.robot.commands.PathCorrection;
 import frc.robot.commands.Vision;
 import frc.robot.subsystems.DriveTrain;
+import com.revrobotics.ColorSensorV3;
+
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -50,6 +53,8 @@ public class RobotContainer {
     visionButton.whenPressed(new Vision());
     JoystickButton pathFinderButton = new JoystickButton(joystick, 4);
     pathFinderButton.whenPressed(new PathCorrection());
+    JoystickButton colorSensorButton = new JoystickButton(joystick, 5);
+    colorSensorButton.whenPressed(new ColorSensor());
   }
 
   /**

@@ -25,7 +25,7 @@ public class Vision extends CommandBase {
     Boolean ledOn = true;
     int pipeline = 0; // Sets the pipeline
 
-    /**
+    /*
      *  Finds the distance from the Limelight to the target.
      *  Formula: (h2-h1)/tan(a2-a1)=d
      * 
