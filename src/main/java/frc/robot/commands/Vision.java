@@ -96,8 +96,7 @@ public class Vision extends CommandBase {
         SmartDashboard.putNumber("Limelight/Horizontal Offset: ", limelight.getHorizontalOffset());
         SmartDashboard.putNumber("Limelight/Vertical Offset: ", limelight.getVerticalOffset());
         SmartDashboard.putNumber("Limelight/Skew: ", limelight.getSkew());
-        SmartDashboard.putNumber("Limelight/CamTran: ", limelight.getCamTran()); // Translation (x,y,y) Rotation(pitch,yaw,roll)
-        //SmartDashboard.putNumberArray("Limelight/CamTran: ", limelight.getCamTran()); // Translation (x,y,y) Rotation(pitch,yaw,roll)
+        SmartDashboard.putNumberArray("Limelight/CamTran: ", limelight.getCamTran()); // Translation (x,y,y) Rotation(pitch,yaw,roll)
         SmartDashboard.putNumber("Limelight/CollinD: ", DistanceToTarget());
     }
 

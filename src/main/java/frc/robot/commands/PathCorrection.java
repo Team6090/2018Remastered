@@ -30,8 +30,8 @@ public class PathCorrection extends CommandBase {
 
     @Override
     public void execute() {
-        double camTran = limelight.getCamTran();
-        SmartDashboard.putNumber("CamTran: ", camTran);
+        double[] camTran = limelight.getCamTran();
+        SmartDashboard.putNumberArray("CamTran: ", camTran);
     }
 
     @Override
