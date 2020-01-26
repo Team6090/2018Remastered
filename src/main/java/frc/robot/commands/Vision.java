@@ -63,6 +63,8 @@ public class Vision extends CommandBase {
          limelight.setCameraMode(initCamMode);
          /** This sets the streaming mode */
          limelight.setStreamingMode(streamMode);
+         /** This sets the pipeline */
+         limelight.setPipeline(0);
     }
 
     // Called every time the scheduler runs while the command is scheduled.

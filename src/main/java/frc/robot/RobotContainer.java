@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.BallGetter;
 import frc.robot.commands.ColorSensor;
 import frc.robot.commands.PathCorrection;
 import frc.robot.commands.Vision;
@@ -54,6 +55,8 @@ public class RobotContainer {
     pathFinderButton.whenPressed(new PathCorrection());
     JoystickButton colorSensorButton = new JoystickButton(joystick, 5);
     colorSensorButton.whenPressed(new ColorSensor());
+    JoystickButton ballGetter = new JoystickButton(joystick, 7);
+    ballGetter.toggleWhenPressed(new BallGetter(drivetrain));
   }
 
   /**

@@ -22,15 +22,12 @@ public class DriveTrain extends SubsystemBase {
   public static final int RIGHT_MOTOR = 3;
   public static final int RIGHT_SLAVE_MOTOR = 4;
 
-  public DriveTrain() {
-    setDefaultCommand(new DriveWithJoystick(RobotContainer.joystick, this));
-  }
-
   /**
-   * The procession of motor declarations and groupings leading to differential drive.
+   * The procession of motor declarations and groupings leading to differential
+   * drive.
    */
 
-  //WPI_TalonSRX leftMotor2 = new WPI_TWPI_TalonSRX
+  // WPI_TalonSRX leftMotor2 = new WPI_TWPI_TalonSRX
   WPI_TalonSRX leftMotor = new WPI_TalonSRX(LEFT_MOTOR);
   WPI_VictorSPX leftSlaveMotor = new WPI_VictorSPX(LEFT_SLAVE_MOTOR);
   WPI_TalonSRX rightMotor = new WPI_TalonSRX(RIGHT_MOTOR);
@@ -41,8 +38,17 @@ public class DriveTrain extends SubsystemBase {
 
   DifferentialDrive diffDrive = new DifferentialDrive(leftSideDrive, rightSideDrive);
 
+  public DriveTrain() {
+    setDefaultCommand(new DriveWithJoystick(RobotContainer.joystick, this));
+    leftMotor.configOpenloopRamp(.8, 0);
+    leftSlaveMotor.configOpenloopRamp(.8, 0);
+    rightMotor.configOpenloopRamp(.8, 0);
+    rightSlaveMotor.configOpenloopRamp(.8, 0);
+  }
+
   /**
    * Used for driving with the joystick
+   * 
    * @param y The Y value from the joystick.
    * @param z The Z value from the joystick.
    */
@@ -61,7 +67,6 @@ public class DriveTrain extends SubsystemBase {
   }
 
   @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
+  public void periodic() {// This method will be called once per scheduler run
   }
 }
