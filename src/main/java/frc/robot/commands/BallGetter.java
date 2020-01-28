@@ -62,7 +62,7 @@ public class BallGetter extends CommandBase {
         /** If target is within the set bounds... */
         if (blobbyX != 0) {
             /** If the target is between a ramp rate bound and the offset bounds... */
-            if (blobbyX < rampUpperBound && blobbyX > offsetBounds[1] || blobbyX > rampLowerBound && blobbyX < offsetBounds[0]) {
+            if ((blobbyX < rampUpperBound && blobbyX > offsetBounds[1]) || (blobbyX > rampLowerBound && blobbyX < offsetBounds[0])) {
                 driveZ = initDriveZ * .3;
                 /** Else, if none of the above, keep the drive rate the same */
             } else {
