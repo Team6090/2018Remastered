@@ -17,7 +17,7 @@ import net.bancino.robotics.jlimelight.Limelight.StreamMode;
 
 public class Vision extends CommandBase {
     
-    Limelight limelight = new Limelight();
+    Limelight limelight;
     LedState initState = LedState.FORCE_ON; // Sets the initialization LED state
     CameraMode initCamMode = CameraMode.VISION; // Sets the initialization to DRIVER/VISION mode
     StreamMode streamMode = StreamMode.STANDARD; // Sets the stream mode to Main, Secondary, or Standard
@@ -50,7 +50,8 @@ public class Vision extends CommandBase {
         return collinD;
     }
 
-    public Vision() {
+    public Vision(Limelight limelight) {
+        this.limelight = limelight;
         //addRequirements();
     }
 

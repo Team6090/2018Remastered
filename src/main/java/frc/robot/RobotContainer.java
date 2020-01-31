@@ -17,6 +17,7 @@ import frc.robot.commands.ColorSensor;
 import frc.robot.commands.PathCorrection;
 import frc.robot.commands.Vision;
 import frc.robot.subsystems.DriveTrain;
+import net.bancino.robotics.jlimelight.Limelight;
 
 
 /**
@@ -34,6 +35,8 @@ public class RobotContainer {
   //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   public static Joystick joystick = new Joystick(0);
 
+  private static Limelight limelight = new Limelight();
+
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
@@ -50,7 +53,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     JoystickButton visionButton = new JoystickButton(joystick, 3);
-    visionButton.whenPressed(new Vision());
+    visionButton.whenPressed(new Vision(limelight));
     JoystickButton pathFinderButton = new JoystickButton(joystick, 4);
     pathFinderButton.whenPressed(new PathCorrection());
     JoystickButton colorSensorButton = new JoystickButton(joystick, 5);
