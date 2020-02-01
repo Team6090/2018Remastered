@@ -15,10 +15,11 @@ import net.bancino.robotics.jlimelight.Limelight.LedState;
 import net.bancino.robotics.jlimelight.Limelight.StreamMode;
 
 public class PathCorrection extends CommandBase {
-    
-    Limelight limelight = new Limelight();
 
-    public PathCorrection(){
+    Limelight limelight;
+
+    public PathCorrection(Limelight limelight) {
+        this.limelight = limelight;
     }
 
     @Override
@@ -31,7 +32,7 @@ public class PathCorrection extends CommandBase {
     @Override
     public void execute() {
         double[] camTran = limelight.getCamTran();
-        SmartDashboard.putNumberArray("CamTran: ", camTran);
+        SmartDashboard.putNumberArray("Limelight/CamTran: ", camTran);
     }
 
     @Override

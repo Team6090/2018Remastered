@@ -55,7 +55,7 @@ public class RobotContainer {
     JoystickButton visionButton = new JoystickButton(joystick, 3);
     visionButton.whenPressed(new Vision(limelight));
     JoystickButton pathFinderButton = new JoystickButton(joystick, 4);
-    pathFinderButton.whenPressed(new PathCorrection());
+    pathFinderButton.whenPressed(new PathCorrection(limelight));
     JoystickButton colorSensorButton = new JoystickButton(joystick, 5);
     colorSensorButton.whenPressed(new ColorSensor());
     JoystickButton ballGetter = new JoystickButton(joystick, 7);
