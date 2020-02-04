@@ -39,7 +39,7 @@ deploy {
 
 repositories {
   maven {
-    url 'https://dump.bancino.net/maven'
+    url 'https://team6090.bancino.net/maven'
   }
 }
 
