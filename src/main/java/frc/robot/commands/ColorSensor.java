@@ -21,7 +21,6 @@ public class ColorSensor extends CommandBase {
     private final Color kGreenTarget = ColorMatch.makeColor(0.197, 0.561, 0.240);
     private final Color kRedTarget = ColorMatch.makeColor(0.561, 0.232, 0.114);
     private final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
-    private char colorChar;
     private String colorString;
     private boolean colorFound = false;
 
