@@ -28,9 +28,9 @@ public class ColorSensor extends CommandBase {
     
     Color detectedColor = colorSensor.getColor();
     ColorMatchResult match = colorMatcher.matchClosestColor(detectedColor);
-    String desiredColor = DriverStation.getInstance().getGameSpecificMessage();
+    String desiredColor;
     String desiredColorOffset = desiredColor+2;
-    
+    String gameSpecificColor = DriverStation.getInstance().getGameSpecificMessage();
 
     public ColorSensor() {
     }
@@ -45,25 +45,28 @@ public class ColorSensor extends CommandBase {
 
         if(desiredColor.length() > 0)
         {
-          switch (desiredColor)
+          switch (gameSpecificColor)
           {
             case "B" :
               //Blue case code
+              desiredColor = "R"
               pwm.setSpeed(0.25d); //either negative or postive for ccw or cw
-              
               break;
             case "G" :
               //Green case code
+              desiredColor = "Y"
               pwm.setSpeed(0.25d);
          
               break;
             case "R" :
               //Red case code
+              desiredColor = "B"
               pwm.setSpeed(0.25d);
                 break;
             
             case "Y" :
               //Yellow case code
+              desiredColor = "G"
               pwm.setSpeed(0.25d);
                 break;
             
