@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.BallGetter;
 import frc.robot.commands.ColorSensor;
+import frc.robot.commands.ColorWheelRotation;
 import frc.robot.commands.PathCorrection;
 import frc.robot.commands.Vision;
 import frc.robot.subsystems.DriveTrain;
@@ -56,8 +57,8 @@ public class RobotContainer {
     visionButton.whenPressed(new Vision(limelight));
     JoystickButton pathFinderButton = new JoystickButton(joystick, 4);
     pathFinderButton.whenPressed(new PathCorrection(limelight));
-    JoystickButton colorSensorButton = new JoystickButton(joystick, 5);
-    colorSensorButton.whenPressed(new ColorSensor());
+    JoystickButton wheelRotateButton = new JoystickButton(joystick, 5);
+    wheelRotateButton.whenPressed(new ColorWheelRotation());
     JoystickButton ballGetter = new JoystickButton(joystick, 7);
     ballGetter.toggleWhenPressed(new BallGetter(drivetrain));
   }

@@ -6,9 +6,6 @@ import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.DriverStation;
 
-//import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-//import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-
 import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorSensorV3;
@@ -21,52 +18,52 @@ public class ColorSensor extends CommandBase {
     private final Color kGreenTarget = ColorMatch.makeColor(0.197, 0.561, 0.240);
     private final Color kRedTarget = ColorMatch.makeColor(0.561, 0.232, 0.114);
     private final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
+    private boolean colorFound;
     private String colorString;
-    private boolean colorFound = false;
 
     edu.wpi.first.wpilibj.PWMVictorSPX pwm = new edu.wpi.first.wpilibj.PWMVictorSPX(0);
     
     Color detectedColor = colorSensor.getColor();
     ColorMatchResult match = colorMatcher.matchClosestColor(detectedColor);
     String desiredColor;
-    String desiredColorOffset = desiredColor+2;
-    String gameSpecificColor = DriverStation.getInstance().getGameSpecificMessage();
+    String gameColor = DriverStation.getInstance().getGameSpecificMessage();
 
     public ColorSensor() {
     }
 
     public void initialize() {
+        colorFound = false;
+        pwm.setSpeed(0.25d);
+
         colorMatcher.addColorMatch(kBlueTarget);
         colorMatcher.addColorMatch(kGreenTarget);
         colorMatcher.addColorMatch(kRedTarget);
         colorMatcher.addColorMatch(kYellowTarget);
-        //Color detectedColor = colorSensor.getColor();
-        //ColorMatchResult match = colorMatcher.matchClosestColor(detectedColor);
-
-        if(desiredColor.length() > 0)
+    }
+        /*if(gameColor.length() > 0)
         {
-          switch (gameSpecificColor)
+          switch (gameColor)
           {
             case "B" :
               //Blue case code
-              desiredColor = "R"
+              desiredColor = "R";
               pwm.setSpeed(0.25d); //either negative or postive for ccw or cw
               break;
             case "G" :
               //Green case code
-              desiredColor = "Y"
+              desiredColor = "Y";
               pwm.setSpeed(0.25d);
          
               break;
             case "R" :
               //Red case code
-              desiredColor = "B"
+              desiredColor = "B";
               pwm.setSpeed(0.25d);
                 break;
             
             case "Y" :
               //Yellow case code
-              desiredColor = "G"
+              desiredColor = "G";
               pwm.setSpeed(0.25d);
                 break;
             
@@ -80,7 +77,7 @@ public class ColorSensor extends CommandBase {
           pwm.setSpeed(0.0d);
         }
         
-      }
+       */
 
     public void execute() {
         Color detectedColor = colorSensor.getColor();
