@@ -11,16 +11,16 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 import net.bancino.robotics.jlimelight.Limelight;
-import net.bancino.robotics.jlimelight.Limelight.CameraMode;
-import net.bancino.robotics.jlimelight.Limelight.LedState;
-import net.bancino.robotics.jlimelight.Limelight.StreamMode;
+import net.bancino.robotics.jlimelight.CameraMode;
+import net.bancino.robotics.jlimelight.LedMode;
+import net.bancino.robotics.jlimelight.StreamMode;
 
 public class BallGetter extends CommandBase {
 
     private DriveTrain drivetrain;
 
     Limelight limelight = new Limelight();
-    LedState initState = LedState.FORCE_OFF; // Sets the initialization LED state
+    LedMode initState = LedMode.FORCE_OFF; // Sets the initialization LED state
     CameraMode initCamMode = CameraMode.DRIVER; // Sets the initialization to DRIVER/VISION mode
     StreamMode streamMode = StreamMode.STANDARD; // Sets the stream mode to Main, Secondary, or Standard
     public double[] blobsReport;
@@ -41,7 +41,7 @@ public class BallGetter extends CommandBase {
         /** This sets the LED state */
         limelight.setLedMode(initState);
         /** This sets the streaming mode */
-        limelight.setStreamingMode(streamMode);
+        limelight.setStreamMode(streamMode);
         /** This sets the pipeline */
         limelight.setPipeline(3);
         /** This sets the camera mode */

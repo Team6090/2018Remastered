@@ -10,9 +10,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import net.bancino.robotics.jlimelight.Limelight;
-import net.bancino.robotics.jlimelight.Limelight.CameraMode;
-import net.bancino.robotics.jlimelight.Limelight.LedState;
-import net.bancino.robotics.jlimelight.Limelight.StreamMode;
+import net.bancino.robotics.jlimelight.CameraMode;
+import net.bancino.robotics.jlimelight.LedMode;
+import net.bancino.robotics.jlimelight.StreamMode;
 
 public class PathCorrection extends CommandBase {
 
@@ -24,9 +24,9 @@ public class PathCorrection extends CommandBase {
 
     @Override
     public void initialize() {
-        limelight.setLedMode(LedState.FORCE_ON);
+        limelight.setLedMode(LedMode.FORCE_ON);
         limelight.setCameraMode(CameraMode.VISION);
-        limelight.setStreamingMode(StreamMode.STANDARD);
+        limelight.setStreamMode(StreamMode.STANDARD);
     }
 
     @Override

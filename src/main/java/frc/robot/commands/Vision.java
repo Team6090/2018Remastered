@@ -11,14 +11,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import net.bancino.robotics.jlimelight.Limelight;
-import net.bancino.robotics.jlimelight.Limelight.CameraMode;
-import net.bancino.robotics.jlimelight.Limelight.LedState;
-import net.bancino.robotics.jlimelight.Limelight.StreamMode;
+import net.bancino.robotics.jlimelight.CameraMode;
+import net.bancino.robotics.jlimelight.LedMode;
+import net.bancino.robotics.jlimelight.StreamMode;
 
 public class Vision extends CommandBase {
     
     Limelight limelight;
-    LedState initState = LedState.FORCE_ON; // Sets the initialization LED state
+    LedMode initState = LedMode.FORCE_ON; // Sets the initialization LED state
     CameraMode initCamMode = CameraMode.VISION; // Sets the initialization to DRIVER/VISION mode
     StreamMode streamMode = StreamMode.STANDARD; // Sets the stream mode to Main, Secondary, or Standard
     Boolean povCamMode = true;
@@ -63,7 +63,7 @@ public class Vision extends CommandBase {
          /** This sets the camera mode */
          limelight.setCameraMode(initCamMode);
          /** This sets the streaming mode */
-         limelight.setStreamingMode(streamMode);
+         limelight.setStreamMode(streamMode);
          /** This sets the pipeline */
          limelight.setPipeline(0);
     }
@@ -86,9 +86,9 @@ public class Vision extends CommandBase {
         switch (RobotContainer.joystick.getPOV()) {
             case 180:
                 if (ledOn) {
-                    limelight.setLedMode(LedState.FORCE_ON);
+                    limelight.setLedMode(LedMode.FORCE_ON);
                 } else {
-                    limelight.setLedMode(LedState.FORCE_OFF);
+                    limelight.setLedMode(LedMode.FORCE_OFF);
                 }
                 ledOn = !ledOn;
         }
